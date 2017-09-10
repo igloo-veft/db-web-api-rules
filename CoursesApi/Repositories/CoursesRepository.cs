@@ -146,7 +146,7 @@ namespace CoursesApi.Repositories
 
         public CourseDetailsDTO AddCourse(CourseViewModel newCourse)
         {
-            var entity = new Course { CourseTemplate = newCourse.CourseID, Semester = newCourse.Semester, StartDate = newCourse.StartDate, EndDate = newCourse.EndDate };
+            var entity = new Course { CourseTemplate = newCourse.CourseID, Semester = newCourse.Semester, StartDate = newCourse.StartDate, EndDate = newCourse.EndDate, MaxStudents = newCourse.MaxStudents };
 
             _db.Courses.Add(entity);
             _db.SaveChanges();
