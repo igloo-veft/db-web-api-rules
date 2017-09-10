@@ -22,5 +22,11 @@ namespace CoursesApi.Models.DTOModels
         /// </summary>
         /// <returns></returns>
         public int NumberOfStudents { get; set; }
+
+        /// <summary>
+        /// Number of students currently on a waiting list for the course
+        /// </summary>
+        /// <returns></returns>
+        public int NumberOfWaitingStudents { get; set; }
     }
 }

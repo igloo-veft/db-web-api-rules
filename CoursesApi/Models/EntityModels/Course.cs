@@ -32,5 +32,11 @@ namespace CoursesApi.Models.EntityModels
         /// </summary>
         /// <returns></returns>
         public string Semester { get; set; }
+
+        /// <summary>
+        /// How many students can be enrolled in a course
+        /// </summary>
+        /// <returns></returns>
+        public int MaxStudents { get; set; }
     }
 }

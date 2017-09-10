@@ -33,5 +33,12 @@ namespace CoursesApi.Models.ViewModels
         /// <returns></returns>
         [Required]
         public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// How many students can be enrolled in a course
+        /// </summary>
+        /// <returns></returns>
+        [Required]
+        public int MaxStudents { get; set; }
     }
 }

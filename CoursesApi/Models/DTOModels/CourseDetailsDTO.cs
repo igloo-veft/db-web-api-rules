@@ -11,6 +11,7 @@ namespace CoursesApi.Models.DTOModels
         public CourseDetailsDTO()
         {
             Students = new List<StudentDTO>();
+            WaitingStudents = new List<StudentDTO>();
         }
         /// <summary>
         /// The id of the course
@@ -37,5 +38,16 @@ namespace CoursesApi.Models.DTOModels
         /// </summary>
         /// <returns></returns>
         public List<StudentDTO> Students { get; set; }
+
+        /// <summary>
+        /// How many students can be enrolled in a course
+        /// </summary>
+        /// <returns></returns>
+        public int MaxStudents { get; set; }
+        /// <summary>
+        /// A list of students who are currently on a waiting list for this course
+        /// </summary>
+        /// <returns></returns>
+        public List<StudentDTO> WaitingStudents { get; set; }
     }
 }
