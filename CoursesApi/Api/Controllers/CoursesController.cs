@@ -149,5 +149,56 @@ namespace Api.Controllers
 
             return NoContent();
         }
+        
+        /// <summary>
+        /// Removes a student from a course without deleting the entry
+        /// </summary>
+        /// <param name="courseId">The id of the course</param>
+        /// <param name="SSN">The SSN of the student</param>
+        /// <returns>A status code 204 (if successful)</returns>
+        [HttpDelete]
+        [Route("{courseId:int}/students/{SSN:int}")]
+        public IActionResult RemoveStudentFromCourse(int courseId, int SSN)
+        {
+            var success = _coursesService.RemoveStudentFromCourseBySSN(courseId, SSN);
+
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        [HttpGet]
+        [Route("{courseId:int}/waitinglist")]
+        public IActionResult GetWaitingListByCourseId(int courseId)
+        {
+            var students = _coursesService.GetWaitingListByCourseId(courseId);
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(students);
+        }
+
+        [HttpPost]
+        [Route("{courseId:int}/waitinglist")]
+        public IActionResult AddStudentToWaitingList(int courseId, [FromBody] StudentViewModel newStudent)
+        {
+            if (newStudent == null) { return BadRequest(); }
+            if (!ModelState.IsValid) { return StatusCode(412); }
+
+            var response = _coursesService.AddStudentToWaitingList(courseId, newStudent);
+
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
+        }
     }
 }
