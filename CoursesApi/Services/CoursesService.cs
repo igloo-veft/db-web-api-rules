@@ -70,14 +70,14 @@ namespace CoursesApi.Services
 
         public IEnumerable<StudentDTO> GetWaitingListByCourseId(int courseId)
         {
-            var students = _repo.GetWaitingListByCourseId(courseId);
+            var students = _repo.GetWaitingStudentsByCourseId(courseId);
 
             return students;
         }
 
         public StudentDTO AddStudentToWaitingList(int courseId, StudentViewModel newStudent)
         {
-            var student = _repo.AddStudentToWaitingList(courseId, newStudent);
+            var student = _repo.AddStudentToCourseWaitingList(courseId, newStudent);
 
             return student;
         }
