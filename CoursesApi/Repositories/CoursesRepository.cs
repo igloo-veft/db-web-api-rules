@@ -147,7 +147,7 @@ namespace CoursesApi.Repositories
             }
 
             _db.Enrollments.Add( 
-                new Enrollment {CourseId = courseId, StudentSSN = newStudent.SSN}
+                new Enrollment {CourseId = courseId, StudentSSN = newStudent.SSN, Active = true}
             );
             _db.SaveChanges();
 
