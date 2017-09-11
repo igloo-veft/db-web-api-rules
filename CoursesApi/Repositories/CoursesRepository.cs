@@ -230,7 +230,40 @@ namespace CoursesApi.Repositories
 
         public bool RemoveStudentFromCourseBySSN(int courseId, int SSN)
         {
+            var student = _db.Enrollments.SingleOrDefault(s => s.SSN == SSN && s.CourseId == courseId);
+
+            if (student == null) 
+            {
+                return null;
+            }
+
+            student.Active = false;
+
+            _db.SaveChanges();
             return true;
+        }
+
+        public bool RemoveStudentFromWaitingList(int courseId, int SSN)
+        {
+            var student = (from s in _db.WaitingLists
+                            where s.CourseId == courseId && s.SSN == SSN
+                            select s).SingleOrDefault();
+
+            if (student == null)
+            {
+                return false;
+            }
+            _db.WaitingLists.Remove(student);
+            _db.SaveChanges();
+
+            return true;
+        }
+
+        public int NumberOfStudentsEnrolled(int courseId)
+        {
+            var enrolled = _db.Enrollments.Count(s => s.CourseId == courseId);
+
+            return enrolled;
         }
     }
 } 
