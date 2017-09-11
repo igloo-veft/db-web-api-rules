@@ -99,7 +99,7 @@ namespace CoursesApi.Repositories
             }
 
             var students = (from sr in _db.Enrollments
-                            where sr.CourseId == courseId
+                            where sr.CourseId == courseId && sr.Active == true
                             join s in _db.Students on sr.StudentSSN equals s.SSN
                             select new StudentDTO
                             {
@@ -267,4 +267,3 @@ namespace CoursesApi.Repositories
         }
     }
 } 
-           
