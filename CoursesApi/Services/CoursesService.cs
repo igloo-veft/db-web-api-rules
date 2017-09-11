@@ -60,5 +60,26 @@ namespace CoursesApi.Services
         {
             return _repo.AddCourse(newCourse);
         }
+
+        public bool RemoveStudentFromCourseBySSN(int courseId, int SSN)
+        {
+            var result = _repo.RemoveStudentFromCourseBySSN(courseId, SSN);
+
+            return result;
+        }
+
+        public IEnumerable<StudentDTO> GetWaitingListByCourseId(int courseId)
+        {
+            var students = _repo.GetWaitingListByCourseId(courseId);
+
+            return students;
+        }
+
+        public StudentDTO AddStudentToWaitingList(int courseId, StudentViewModel newStudent)
+        {
+            var student = _repo.AddStudentToWaitingList(courseId, newStudent);
+
+            return student;
+        }
     }
 }
