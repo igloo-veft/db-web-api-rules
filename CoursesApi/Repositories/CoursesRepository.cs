@@ -109,6 +109,27 @@ namespace CoursesApi.Repositories
             return students;
         }
 
+        public IEnumerable<StudentDTO> GetWaitingStudentsByCourseId(int courseId)
+        {
+            var course = _db.Courses.SingleOrDefault(c => c.Id == courseId);
+
+            if (course == null) 
+            {
+                return null;
+            }
+
+            var students = (from sr in _db.WaitingLists
+                            where sr.CourseId == courseId
+                            join s in _db.Students on sr.StudentSSN equals s.SSN
+                            select new StudentDTO
+                            {
+                                SSN = s.SSN,
+                                Name = s.Name
+                            }).ToList();
+
+            return students;
+        }
+
         public StudentDTO AddStudentToCourse(int courseId, StudentViewModel newStudent)
         {
             var course = (from c in _db.Courses
@@ -126,6 +147,35 @@ namespace CoursesApi.Repositories
 
             _db.Enrollments.Add( 
                 new Enrollment {CourseId = courseId, StudentSSN = newStudent.SSN}
+            );
+            _db.SaveChanges();
+
+            return new StudentDTO
+            {
+                SSN = newStudent.SSN,
+                Name = (from st in _db.Students
+                       where st.SSN == newStudent.SSN
+                       select st).SingleOrDefault().Name
+            };
+        }
+
+        public StudentDTO AddStudentToCourseWaitingList(int courseId, StudentViewModel newStudent)
+        {
+            var course = (from c in _db.Courses
+                          where c.Id == courseId
+                          select c).SingleOrDefault();
+
+            var student = (from s in _db.Students
+                           where s.SSN == newStudent.SSN
+                           select s).SingleOrDefault();
+
+            if (course == null || student == null)
+            {
+                return null;
+            }
+
+            _db.WaitingLists.Add( 
+                new WaitingList {CourseId = courseId, StudentSSN = newStudent.SSN}
             );
             _db.SaveChanges();
 
