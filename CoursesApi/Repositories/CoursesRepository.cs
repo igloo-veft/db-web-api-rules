@@ -26,7 +26,7 @@ namespace CoursesApi.Repositories
                            {
                                Id = c.Id,
                                Name = t.CourseName,
-                               NumberOfStudents = (_db.Enrollments.Count(s => s.CourseId == c.Id))
+                               NumberOfStudents = (_db.Enrollments.Count(s => s.CourseId == c.Id)),
                                NumberOfWaitingStudents = (_db.WaitingLists.Count(s => s.CourseId == c.Id))
                            }).ToList();
 
@@ -65,7 +65,7 @@ namespace CoursesApi.Repositories
                                     {
                                         SSN = s.SSN,
                                         Name = s.Name
-                                    }).ToList();
+                                    }).ToList()
             };
 
             return result;
