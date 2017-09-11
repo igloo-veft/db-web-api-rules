@@ -18,8 +18,8 @@ namespace CoursesApi.Repositories
 
         bool DeleteCourseById(int courseId);
 
-        bool RemoveStudentFromCourseBySSN(int courseId, int SSN);
-        bool RemoveStudentFromWaitingList(int courseId, int SSN);
+        bool RemoveStudentFromCourseBySSN(int courseId, string SSN);
+        bool RemoveStudentFromWaitingList(int courseId, string SSN);
 
         int NumberOfStudentsEnrolled(int courseId);
     }

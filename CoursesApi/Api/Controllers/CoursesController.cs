@@ -158,7 +158,7 @@ namespace Api.Controllers
         /// <returns>A status code 204 (if successful)</returns>
         [HttpDelete]
         [Route("{courseId:int}/students/{SSN:int}")]
-        public IActionResult RemoveStudentFromCourse(int courseId, int SSN)
+        public IActionResult RemoveStudentFromCourse(int courseId, string SSN)
         {
             var success = _coursesService.RemoveStudentFromCourseBySSN(courseId, SSN);
 

@@ -61,7 +61,7 @@ namespace CoursesApi.Services
             return _repo.AddCourse(newCourse);
         }
 
-        public bool RemoveStudentFromCourseBySSN(int courseId, int SSN)
+        public bool RemoveStudentFromCourseBySSN(int courseId, string SSN)
         {
             var result = _repo.RemoveStudentFromCourseBySSN(courseId, SSN);
 

@@ -228,13 +228,13 @@ namespace CoursesApi.Repositories
             };
         }
 
-        public bool RemoveStudentFromCourseBySSN(int courseId, int SSN)
+        public bool RemoveStudentFromCourseBySSN(int courseId, string SSN)
         {
-            var student = _db.Enrollments.SingleOrDefault(s => s.SSN == SSN && s.CourseId == courseId);
+            var student = _db.Enrollments.SingleOrDefault(s => s.StudentSSN == SSN && s.CourseId == courseId);
 
             if (student == null) 
             {
-                return null;
+                return false;
             }
 
             student.Active = false;
@@ -243,10 +243,10 @@ namespace CoursesApi.Repositories
             return true;
         }
 
-        public bool RemoveStudentFromWaitingList(int courseId, int SSN)
+        public bool RemoveStudentFromWaitingList(int courseId, string SSN)
         {
             var student = (from s in _db.WaitingLists
-                            where s.CourseId == courseId && s.SSN == SSN
+                            where s.CourseId == courseId && s.StudentSSN == SSN
                             select s).SingleOrDefault();
 
             if (student == null)
