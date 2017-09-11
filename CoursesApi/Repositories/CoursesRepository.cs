@@ -82,6 +82,7 @@ namespace CoursesApi.Repositories
 
             course.StartDate = updatedCourse.StartDate;
             course.EndDate = updatedCourse.EndDate;
+            course.MaxStudents = updatedCourse.MaxStudents;
 
             _db.SaveChanges();
 
