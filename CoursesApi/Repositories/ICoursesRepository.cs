@@ -11,6 +11,7 @@ namespace CoursesApi.Repositories
         CourseDetailsDTO AddCourse(CourseViewModel newCourse);
         CourseDetailsDTO UpdateCourse(int courseId, CourseViewModel updatedCourse);
         IEnumerable<StudentDTO> GetStudentsByCourseId(int courseId);
+        IEnumerable<StudentDTO> GetWaitingStudentsByCourseId(int courseId);
 
         StudentDTO AddStudentToCourse(int courseId, StudentViewModel newStudent);
         StudentDTO AddStudentToCourseWaitingList(int courseId, StudentViewModel newStudent);
