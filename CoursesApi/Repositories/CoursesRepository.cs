@@ -227,6 +227,11 @@ namespace CoursesApi.Repositories
                     }).ToList()
             };
         }
+
+        public bool RemoveStudentFromCourseBySSN(int courseId, int SSN)
+        {
+            return true;
+        }
     }
 } 
            

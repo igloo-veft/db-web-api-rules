@@ -17,6 +17,8 @@ namespace CoursesApi.Repositories
         StudentDTO AddStudentToCourseWaitingList(int courseId, StudentViewModel newStudent);
 
         bool DeleteCourseById(int courseId);
+
+        bool RemoveStudentFromCourseBySSN(int courseId, int SSN);
     }
 }
 
