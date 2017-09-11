@@ -20,5 +20,11 @@ namespace CoursesApi.Models.EntityModels
         /// </summary>
         /// <returns></returns>
         public string StudentSSN { get; set; }
+
+        /// <summary>
+        /// Whether student is on active enrollment in the course or not
+        /// </summary>
+        /// <returns></returns>
+        public bool Active { get; set; }
     }
 }
