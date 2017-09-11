@@ -27,6 +27,7 @@ namespace CoursesApi.Repositories
                                Id = c.Id,
                                Name = t.CourseName,
                                NumberOfStudents = (_db.Enrollments.Count(s => s.CourseId == c.Id))
+                               NumberOfWaitingStudents = (_db.WaitingLists.Count(s => s.CourseId == c.Id))
                            }).ToList();
 
             return courses;
@@ -55,7 +56,16 @@ namespace CoursesApi.Repositories
                            {
                                SSN = s.SSN,
                                Name = s.Name
-                           }).ToList()
+                           }).ToList(),
+                MaxStudents = course.MaxStudents,
+                WaitingStudents = (from sr in _db.WaitingLists
+                                    where sr.CourseId == course.Id
+                                    join s in _db.Students on sr.StudentSSN equals s.SSN
+                                    select new StudentDTO
+                                    {
+                                        SSN = s.SSN,
+                                        Name = s.Name
+                                    }).ToList();
             };
 
             return result;
