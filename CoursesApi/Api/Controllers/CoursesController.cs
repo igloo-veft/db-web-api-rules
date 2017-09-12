@@ -120,8 +120,17 @@ namespace Api.Controllers
         {
             if (newStudent == null) { return BadRequest(); }
             if (!ModelState.IsValid) { return StatusCode(412); }
+            
+            var courseStudents = _coursesService.NumberOfStudentsEnrolled(courseId);
+
+            if(courseStudents > _coursesService.GetCourseById(courseId).MaxStudents)
+            {
+                return StatusCode(412);
+            }
 
             var response = _coursesService.AddStudentToCourse(courseId, newStudent);
+            
+
 
             if (response == null)
             {

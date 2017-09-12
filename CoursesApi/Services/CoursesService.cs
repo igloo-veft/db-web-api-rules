@@ -81,5 +81,12 @@ namespace CoursesApi.Services
 
             return student;
         }
+
+        public int NumberOfStudentsEnrolled(int courseId)
+        {
+            var number = _repo.NumberOfStudentsEnrolled(courseId);
+
+            return number;
+        }
     }
 }
